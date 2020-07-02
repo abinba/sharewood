@@ -1,5 +1,9 @@
-from django.apps import AppConfig
+import django.apps
 
 
-class AppConfig(AppConfig):
+class AppConfig(django.apps.AppConfig):
     name = 'app'
+
+    def ready(self):
+        from app import popular_records_gen
+        popular_records_gen.start()
